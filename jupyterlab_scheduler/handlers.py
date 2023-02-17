@@ -1,11 +1,15 @@
 import os
 import json
 import re
+import logging
 from notebook.base.handlers import APIHandler
 from notebook.utils import url_path_join
 import tornado
 from tornado.web import StaticFileHandler
 from crontab import CronTab
+
+# add python logging for user config errors
+logging.basicConfig(level=logging.ERROR)
 
 LOG_BASE_PATH = os.environ.get("JUPYTERLAB_SCHEDULER_LOG_PATH", "/tmp")
 
@@ -17,8 +21,11 @@ class AllJobs(APIHandler):
 
             data = []
 
-            cron = CronTab(user=os.environ["USER"])
-    
+            try:
+                cron = CronTab(user=os.environ["USER"])
+            except KeyError as e:
+                logging.error(f"USER environment variable has not been set which raised this error: {e}")
+
             for job in cron:
                 if("jupyterlab_scheduler job" in job.comment):
 
