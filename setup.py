@@ -93,7 +93,7 @@ setup_args = dict(
     packages=setuptools.find_packages(),
     python_requires=">=3.5",
     install_requires=[
-        "jupyterlab>=3.1.4,==3.*",
+        "jupyterlab>=3.1.6",
         "python-crontab~=2.5",
         "papermill~=2.1"
     ],
@@ -112,6 +112,7 @@ setup_args = dict(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Framework :: Jupyter",
     ],
 )

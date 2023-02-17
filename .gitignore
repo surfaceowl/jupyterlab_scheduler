@@ -8,3 +8,4 @@ labextension
 test-job.bs
 yarn.lock
 package-lock.json
+.idea*
